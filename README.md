@@ -14,9 +14,10 @@ The dataset consists of hundreds of paintings by 25 renowned painters. Each imag
 
 Download the dataset using the command below in your Google Colab environment:
 
-```bash
 !gdown 1-0d315aj7Ai8NNqat65XDvaOcHDcHiUD
 !unzip famous_paintings.zip > /dev/null 2>&1
+
+
 🛠️ Key Features
 Data preprocessing using image_dataset_from_directory and label encoding
 
