@@ -17,91 +17,88 @@ Download the dataset using the command below in your Google Colab environment:
 !gdown 1-0d315aj7Ai8NNqat65XDvaOcHDcHiUD
 !unzip famous_paintings.zip > /dev/null 2>&1
 
+## 🛠️ Key Features
 
-🛠️ Key Features
-Data preprocessing using image_dataset_from_directory and label encoding
+- **📦 Dataset Organization**: Images are automatically organized into class-based folders to streamline training.
+- **🧹 Preprocessing**: Utilizes `image_dataset_from_directory` and `LabelEncoder` for efficient data loading and label encoding.
+- **🧠 Transfer Learning**: Built upon the pre-trained `ResNet50` model for effective feature extraction.
+- **🔄 Data Augmentation**: Enhances model robustness through random flipping, rotation, brightness, zoom, and contrast transformations.
+- **🔧 Fine-Tuning**: Supports partial or full fine-tuning of the top `ResNet` layers to improve performance.
+- **📊 Evaluation Metrics**: Measures performance using Accuracy, F1-score, Precision, and Recall.
+- **🔁 Class Mapping**: Ensures correct label-to-artist name mapping using `class_names` for accurate prediction outputs.
 
-Transfer learning with ResNet50
+---
 
-Data augmentation (rotation, brightness, contrast, etc.)
+## 🧠 Model Architecture
 
-Fine-tuning last layers of the pre-trained model
+- **Base Model**: `ResNet50` with `include_top=False` and `imagenet` pre-trained weights.
+- **Classification Head**:
+  - `GlobalAveragePooling2D`
+  - Dense layers with `ReLU` activation
+  - `BatchNormalization` and `Dropout` for regularization
+  - Final output layer with `softmax` activation for multi-class classification
+- **Optimizer**: Adam with:
+  - Learning rate scheduling (`ReduceLROnPlateau`)
+  - Early stopping (`EarlyStopping`) for optimal training convergence
 
-Metrics: Accuracy, F1-score, Precision, Recall
+---
 
-Prediction output converted to artist names with proper label mapping
+## 📈 Training Visualization
 
-🧠 Model Architecture
-Base model: ResNet50 (include_top=False)
+Training progress is visualized using Plotly for both loss and accuracy metrics:
 
-Custom classification head: Dense layers + BatchNorm + Dropout
 
-Optimization: Adam optimizer with learning rate decay and early stopping
+## 🧪 Evaluation & Submission
 
-📈 Visualization
-Training history is visualized using interactive Plotly charts for:
+- ✅ Achieved validation accuracy: **~60%**
+- 🔍 Predictions on the test set are mapped to artist names using `class_names`.
+- 📄 Output saved to `submission.csv` in the following format:
 
-Loss vs Epochs
+- 🗜️ All results are compressed into `result.zip` for submission or sharing.
 
-Accuracy vs Epochs
+---
 
-python
-Copy
-Edit
-display_curves(history, 'loss')
-display_curves(history, 'accuracy')
-🧪 Evaluation & Submission
-Validation accuracy: ~60%
+## 📦 Project Files
 
-Test predictions converted to readable artist names using class_names
+- `artist.ipynb` – Full Jupyter Notebook containing code for training, evaluation, and prediction  
+- `submission.csv` – Output predictions for the test dataset  
+- `result.zip` – Compressed archive for final submission  
 
-Generates a submission.csv in the following format:
+---
 
-file	artist
-test_001	Vincent_van_Gogh
-test_002	Claude_Monet
-...	...
+## 🧑‍🎨 Artists Covered
 
-Final outputs are zipped into result.zip for submission.
+The model is trained to recognize works from 25 celebrated artists, including:
 
-📦 Contents
-artist.ipynb: Full Jupyter notebook
+- Pablo Picasso  
+- Vincent van Gogh  
+- Rembrandt  
+- Leonardo da Vinci  
+- Frida Kahlo  
+- Salvador Dali  
+- Andy Warhol  
+- Edgar Degas  
+- Henri Matisse  
+- Paul Klee  
+- *...and more*
 
-submission.csv: Output predictions for test images
+---
 
-result.zip: Compressed file for evaluation or upload
+## 🚀 How to Run
 
-🧑‍🎨 Artists Included
-Some of the painters in this dataset:
+1. Open `artist.ipynb` in Google Colab  
+2. Download and unzip the dataset  
+3. Execute training and validation cells  
+4. Generate predictions and export the submission  
 
-Pablo Picasso
+---
 
-Vincent van Gogh
+## 📄 License
 
-Rembrandt
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
 
-Leonardo da Vinci
+---
 
-Frida Kahlo
+## 🙌 Acknowledgments
 
-Salvador Dali
-
-Andy Warhol
-
-and many more...
-
-🚀 Usage
-Run artist.ipynb in Google Colab
-
-Download and unzip the dataset
-
-Train the model and evaluate performance
-
-Generate predictions and save the submission
-
-📄 License
-MIT License. See LICENSE file for details.
-
-🙌 Acknowledgments
-Special thanks to open-source painting archives and Kaggle datasets that inspired this project.
-
+Gratitude to open-source painting archives, Kaggle, and the deep learning community for the inspiration and datasets that made this project possible.
